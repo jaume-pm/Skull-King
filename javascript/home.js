@@ -8,7 +8,7 @@ function createMatrix(event) {
     const numberOfPlayers = parseInt(countField.value);
 
     // Create the pointsMatrix
-    const rows = 10;
+    const rows = 10*2;
     const columns = numberOfPlayers;
     const pointsMatrix = [];
 
