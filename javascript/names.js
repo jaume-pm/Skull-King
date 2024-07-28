@@ -1,5 +1,5 @@
-// Read the numPlayers variable from local db
-const numPlayers = localdb.numPlayers;
+// Read the numPlayers variable from local storage
+const numPlayers = localStorage.numPlayers;
 
 // Create an empty array to store player names
 const playerNames = [];
@@ -8,15 +8,13 @@ const playerNames = [];
 function handleSubmit(event) {
     event.preventDefault();
 
-    // Get the input value from the form
-    const nameInput = document.getElementById('nameInput');
-    const playerName = nameInput.value;
+    for(let i = 0; i < numPlayers; i++) {
+        const input = document.getElementById(`nameInput${i}`);
+        playerNames.push(input.value);
+    }
 
-    // Add the player name to the array
-    playerNames.push(playerName);
-
-    // Clear the input field
-    nameInput.value = '';
+    // Store playerNames in local storage
+    localStorage.setItem('playerNames', JSON.stringify(playerNames));
 
     // Redirect to calculator.html
     window.location.href = './calculator.html';
@@ -26,10 +24,13 @@ function handleSubmit(event) {
 const form = document.createElement('form');
 
 // Create the input element
-const input = document.createElement('input');
-input.type = 'text';
-input.id = 'nameInput';
-input.placeholder = 'Enter player name';
+for(let i = 0; i < numPlayers; i++) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = `nameInput${i}`;
+    input.placeholder = `Enter player ${i + 1} name`;
+    form.appendChild(input);
+}
 
 // Create the submit button
 const submitButton = document.createElement('button');
@@ -40,7 +41,6 @@ submitButton.textContent = 'Submit';
 form.addEventListener('submit', handleSubmit);
 
 // Append the input and submit button to the form
-form.appendChild(input);
 form.appendChild(submitButton);
 
 // Append the form to the body of the webpage
