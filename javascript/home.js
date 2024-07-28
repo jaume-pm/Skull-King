@@ -26,7 +26,7 @@ function createMatrix(event) {
     // Store pointsMatrix in local storage
     localStorage.setItem('pointsMatrix', JSON.stringify(pointsMatrix));
 
-    window.location.href = './names.html';
+    window.location.href = 'html/names.html';
 }
 
 // Add event listener to the button
